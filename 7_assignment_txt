@@ -1,0 +1,398 @@
+PROGRAM 01: C program to find the sum of 'n' numbers.
+
+Roll no: 7
+
+Name : ANSILA.N.V
+
+PROGRAM CODE: 
+
+#include<stdio.h>
+
+int main()
+{
+	int arr[10],sum=0,n,i,j;
+	printf("Enter the elements : ");
+	scanf("%d",&n);
+	for(i=0;i<=n-1;i++)
+	{
+		scanf("%d",&arr[i]);
+	}
+	for(j=0;j<=n-1;j++)
+	{
+		sum=sum+arr[j];
+	}
+	printf("sum = %d",sum);
+	return 0;
+}
+
+-------------------------------------------------------------------------------------------------------
+
+PROGRAM 02: C program to merge two sorted arrays.
+
+Roll no: 7
+
+Name : ANSILA.N.V
+
+PROGRAM CODE : 
+
+#include <stdio.h>
+#include <stdlib.h>
+
+void sort(int arr[],int size)
+{
+	int temp;
+	for(int i = 0; i < size; i++)
+	{
+		for(int j = i+1; j < size; j++)
+		{
+			if(arr[i]>arr[j])
+			{
+				temp = arr[i];
+				arr[i] = arr[j];
+				arr[j] = temp;
+			}
+		}
+	}
+}
+
+void merge(int arr1[],int arr2[], int size1,int size2,int *merged)
+{
+	int size;
+	for(int i=0;i<size1+1;i++)
+	{
+		merged[i] = arr1[i];
+		size=i;
+	}
+	for(int j=0;j<size2+1;j++)
+	{
+		merged[size+j] = arr2[j];
+	}	
+}
+
+int main()
+{
+//Array 1
+	int arr1[4] = {34,6,3,17};
+	int size1 = sizeof(arr1)/sizeof(arr1[0]);
+
+	printf("Unsored Array 1:\n");
+	for(int i=0;i<size1;i++)
+	{
+		printf("%d,",arr1[i]);	
+	}
+	printf("\n");
+
+	sort(arr1,size1);
+	printf("Array 1 after sorting:\n");
+	for(int i=0;i<size1;i++)
+	{
+		printf("%d,",arr1[i]);	
+	}
+	printf("\n");
+
+// Array 2
+
+	int arr2[5] = {100,89,56,61,2};
+	int size2 = sizeof(arr2)/sizeof(arr2[0]);
+
+	printf("Unsored Array 2:\n");
+	for(int i=0;i<size2;i++)
+	{
+		printf("%d,",arr2[i]);	
+	}
+	printf("\n");
+
+	sort(arr2,size2);
+	printf("Array 2 after sorting:\n");
+	for(int i=0;i<size2;i++)
+	{
+		printf("%d,",arr2[i]);	
+	}
+	printf("\n");
+
+
+//Merge array
+	int total = size1+size2;
+
+	int* merged = (int*)malloc(total * sizeof(int));
+
+	merge(arr1, arr2, size1, size2, merged);
+
+	printf("Merged array before sorting:\n");
+
+	for(int i=0;i<total;i++)
+	{
+		printf("%d,",merged[i]);	
+	}
+	printf("\n");
+
+	sort(merged,total);
+
+	printf("Merged array after sorting:\n");
+
+	for(int i=0;i<total;i++)
+	{
+		printf("%d,",merged[i]);	
+	}
+	printf("\n");
+
+	
+	return 0;
+}
+
+--------------------------------------------------------------------------------------------------------
+
+PROGRAM 03: C program to create a STACK using array data structure and implement the operations PUSH, POP and TRAVESE.
+
+Roll no: 7
+
+Name : ANSILA.N.V
+
+PROGRAM CODE : 
+
+#include<stdio.h>
+#include <stdlib.h>  
+#define SIZE 10
+
+int top = -1,arr[SIZE];  
+void push();  
+void pop();  
+void traversal();  
+
+int main()
+
+{
+	 int ch;  
+	while (1)
+	{  
+		printf("\nPerform operations on the stack:");  
+		printf("\n1.Push\n2.Pop\n3.Traversal\n4.End");  
+		printf("\n\nEnter the choice: ");  
+		scanf("%d", &ch);  
+		switch(ch)
+		{
+			case 1:
+				push();
+				break;
+			case 2:
+				pop();
+				break;
+			case 3:
+				traversal();
+				break;
+			case 4:
+				return(0);
+			default:
+			printf("\n\nWrong choice entered");
+		}
+	}
+}
+
+void push()  
+{  
+	int n; 
+	if (top == SIZE - 1)  
+	{  
+		printf("\nOverflow!!");  
+	}  
+	else  
+	{  
+		printf("\nEnter the element to be added onto the stack: ");  
+		scanf("%d", &n);  
+		top = top + 1;  
+		arr[top] = n;  
+	}  
+}
+  
+void pop()  
+{  
+	if (top == -1)  
+	{  
+		printf("\nUnderflow!!");  
+	}  
+	else  
+	{	  
+		printf("\nPopped element: %d",arr[top]);  
+		top = top - 1;  
+	}  
+}  
+
+void traversal()  
+{  
+	if (top == -1)  
+	{  
+		printf("\nUnderflow!!");  
+	}  
+	else  
+	{  
+		printf("\nElements in the stack: \n");  
+		for (int i = top; i >= 0; --i)  
+		printf("%d\n",arr[i]);  
+	}  
+}  
+	
+-------------------------------------------------------------------------------------------------------------------------------------
+
+PROGRAM 04:C program to create a QUEUE using array data structure and implement the operations ENQUEUE, DEQUEUE and TRAVERSE.
+
+Roll no: 7
+
+Name : ANSILA.N.V
+
+PROGRAM CODE:
+
+#include<stdio.h>
+#include<stdlib.h>  
+#define maxsize 5
+  
+void enqueue();
+void dequeue();
+void traversal();
+
+int FRONT = -1,REAR = -1;  
+int queue[maxsize];  
+
+int main()
+
+{
+	int ch;   
+	while(ch != 4)   
+	{
+		printf("\n1.Enqueue an element  \n2.Dequeue an element  \n3.traversal the elements  \n4.Exit  \n");
+		printf("\n Enter your choice : ");
+		scanf("%d",&ch);
+		switch(ch)
+		{
+			case 1:		
+			enqueue();
+			break;
+			
+			case 2:
+			dequeue();
+			break;
+
+			case 3:
+			traversal();
+			break;
+
+			case 4:
+			exit(0);
+			break;
+
+			default:
+	
+			printf("enter a valid choice");
+		}
+	}
+}
+
+void enqueue()
+{
+	int ITEM;
+	printf("\nEnter the element : \n");
+	scanf("%d",&ITEM);
+	if (REAR == maxsize-1)
+	{
+		printf("\n Overflow \n");
+		return;
+	}
+	if (FRONT == -1 && REAR == -1)
+	{
+		FRONT = REAR = 0;
+	}
+	else
+	{
+		REAR = REAR + 1;
+	}
+	queue[REAR] = ITEM;
+	printf("\n element inserted\n");
+}
+
+void dequeue()
+{
+	int ITEM;
+	if (FRONT ==-1)
+	{
+		printf("\n UNDERFLOW\n");
+		return;	
+	}
+	else
+	{
+		ITEM = queue[FRONT];
+		if (FRONT == REAR)
+	{
+		FRONT = -1;
+		REAR = -1;
+	}
+	else
+	{
+		FRONT = FRONT + 1;
+	}
+	printf("\n element deleted\n");
+	}
+}
+
+void traversal()
+{
+	int i;
+	if (REAR == -1)
+	{
+		printf("\n Queue is empty \n");
+	}
+	else
+	{
+		for(i = FRONT ; i <= REAR ; i++)
+		{
+			printf("\n %d\n",queue[i]);
+		}
+	}
+}
+
+	printf("Queue elements:");
+	for(int i=front;i<=rear;i++)
+	{
+		printf("%d ",arr[i]);
+	}
+	printf("\n");
+}
+
+int main()
+{
+
+	int size;
+	printf("Enter the size of the array:");
+	scanf("%d",&size);
+	int* arr = (int*)malloc(size * sizeof(int));
+	int choice;
+
+	do
+	{
+		printf("---------------------------");
+		printf("\nEnter the operation number:\n\n1.Enqueue\n2.Dequeue\n3.Traversal\n4.Exit\n\n");
+		scanf("%d",&choice);
+		printf("- - - - - - - - - - - - - -\n");
+		switch(choice)
+		{
+			case 1:
+				enqueue(arr,size);
+				break;
+			case 2:
+				dequeue(arr);
+				break;
+
+			case 3:
+				traversal(arr);
+				
+				break;
+
+			case 4:
+				printf("Exit\n");
+				break;
+
+		}
+	}
+	while(choice!=4);
+
+
+	return 0;
+}
